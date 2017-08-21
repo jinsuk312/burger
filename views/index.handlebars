@@ -1,0 +1,47 @@
+<div>
+	<div>
+		<h1 class="index-title">EAT A BURGER!</h1>
+	</div>
+
+	<div>
+		<div>
+			<h2 class="index-sub">Burgers in the works!</h2>
+			<ul class="index-ul">
+				{{#each burger}}
+					{{#unless this.devoured}}
+						<li>
+							<form action="/{{this.id}}?_method=PUT" method="POST">
+							{{this.id}}.{{this.burger_name}}
+							<input type="text" name="devoured">
+							<button class="button" type="submit">DEVOUR!!</button>
+							</form>
+						</li>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div>
+		<div>
+			<h2 class="index-sub">Finished burgers</h2>
+			<ul class="index-ul">
+				{{#each burger}}
+					{{#if this.devoured}}
+						<li>
+							{{this.id}}.{{this.burger_name}}
+						</li>
+					{{/if}}
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+
+	<div>
+		<form action="/" method="POST">
+			<div>
+				<label for="burger_name">Burger Name: </label>
+				<input type="text" name="burger_name" id="burger_name">
+			</div>
+			<button class="button" type="submit">Add Burger</button>
+		</form>
+	</div>
+	
+</div>
